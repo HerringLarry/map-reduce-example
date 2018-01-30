@@ -4,7 +4,6 @@ import csv
 import sys
 
 def add_to_list(l,iterator,date,is_new,zone):
-    print date
     if not is_new:
         for y in l[iterator][1]:
             if y[0] == date.strip():
@@ -52,8 +51,10 @@ def reduce(f):
         new = most_pickups(x[1])
         x[1] = new
     for x in l:
-        print x 
-
+        x = str(x)
+        x = x.replace('[','')
+        x = x.replace(']','')
+        print x
 def main():
     reduce(sys.stdin)
 
