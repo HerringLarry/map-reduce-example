@@ -28,6 +28,12 @@ def add_to_list(l,it,date,is_new,zone):
                 return l
     return l
 
+def swap(l,i,j):
+    temp = l[i]
+    l[i] = l[j]
+    l[j] = temp
+    return l
+
 def initialize_new(zone):
     """
         Creates list consisting of 
@@ -63,17 +69,20 @@ def reduce(f):
     format. Eventually outputs newly created list
     """
     l = []
-    csv_reader = csv.reader(f)
     it = -1
     curr_zone = -1
-    for line in csv_reader:
-        new_zone = int(line[0])
-        if curr_zone == new_zone: #checks zone against 
-            l = add_to_list(l,it,line[1],False,curr_zone) #False indicates not new zone
-        else:
-            curr_zone = new_zone
-            it = it + 1
-            l = add_to_list(l,it,line[1],True,curr_zone)
+    read = csv.reader(f)
+    is_even = 2
+    for line in read:
+        if is_even % 2 == 0:
+            new_zone = int(line[0])
+            if curr_zone == new_zone: #checks zone against 
+                l = add_to_list(l,it,line[1],False,curr_zone) #False indicates not new zone
+            else:
+                curr_zone = new_zone
+                it = it + 1
+                l = add_to_list(l,it,line[1],True,curr_zone)
+        is_even = is_even + 1
 
     for x in l:
         new = most_pickups(x[1]) #Finds max_pickups
@@ -84,7 +93,6 @@ def reduce(f):
         x = x.replace(']','')
         x = x.replace('\'','')
         print x
-
 
 def main():
     reduce(sys.stdin)

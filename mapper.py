@@ -19,8 +19,9 @@ def mapper():
     reader.next() #skips header, for some reason header is not already skipped
     for line in reader:
         if int(line[21]) > 100 and int(line[21]) <= 200: # if zone is between 100 and 200
-                sys.stdout.write(line[21] + ', ' + line[3] +  '\n')  #Zone and date, counts as one pickup
-
+                #sys.stdout.write([line[21] +',' + line[3] + ',' + '\n'])  #Zone and date, counts as one pickup
+                
+                print line[21] +',' +  line[3]
 
 def main():
     mapper()
