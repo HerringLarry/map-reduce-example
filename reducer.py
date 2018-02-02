@@ -16,8 +16,6 @@ def add_to_list(l,it,date,is_new,zone):
     """
     if not is_new: 
         for y in l[it][1]: #iterates through dates [135,[<<<<"2015-12-3">>>>,1]] indicated by pointed brackets
-            print y
-            print y[0]
             if str(y[0]) == date.strip():
                 y[1] = y[1] + 1 #adds one to corresponding date's cumulative total
                 return l
